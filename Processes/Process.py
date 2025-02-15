@@ -3,6 +3,7 @@ import numpy as np
 import pandas as pd
 from Client.UI import interface
 from Logic import Math
+from Entities import weightsBiases
 
 class Data:
     def __init__(self):
@@ -29,6 +30,10 @@ class Data:
         NN = Math.NeuralNeural()
 
         W1, b1, W2, b2 = NN.gradient_descent(X_train, Y_train, 0.10, 500)  # trains the neural network
+
+        #values = weightsBiases.DTO(W1, W2, b1, b2, X_dev, Y_dev)
+
+        #return values
 
         self.get_prediction(W1, b1, W2, b2, X_dev, Y_dev)
 
