@@ -1,6 +1,4 @@
 import random
-from urllib.parse import uses_relative
-
 import numpy as np
 import pandas as pd
 from Client.UI import interface
