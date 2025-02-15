@@ -1,11 +1,10 @@
 from Timer import Timing
-from Data import Training
-
+from Processes import Process
 
 t = Timing
 t.Timer.start()
 
-data = Training
+data = Process
 data.Data.get_data()
 
 t.Timer.stop()
