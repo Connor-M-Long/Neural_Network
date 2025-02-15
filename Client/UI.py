@@ -1,6 +1,6 @@
 import PySimpleGUI as sg
 from matplotlib import pyplot as plt
-from Logic import Math
+from Server.Logic import Math
 import random
 
 class interface:

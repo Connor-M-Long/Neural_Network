@@ -2,8 +2,8 @@ import random
 import numpy as np
 import pandas as pd
 from Client.UI import interface
-from Logic import Math
-from Entities import weightsBiases
+from Server.Logic import Math
+from Server.Entities import weightsBiases
 
 class Data:
     def __init__(self):

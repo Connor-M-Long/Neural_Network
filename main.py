@@ -1,7 +1,6 @@
-from Timer import Timing
-from Processes import Process
+from Server.Processes import Process, Timer
 
-t = Timing.Timer
+t = Timer.Timer
 t.start()
 
 data = Process.Data
