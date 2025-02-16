@@ -42,4 +42,5 @@ class Data:
         NN = Math.NeuralNeural()
         pred, lbl, ci = NN.test_prediction(random.randint(0, 9), W1, b1, W2, b2, X_dev, Y_dev)  # creates a prediction
 
-        interface.display(pred, lbl, ci, W1, b1, W2, b2, X_dev, Y_dev)
+        userInterface = interface()
+        userInterface.display(pred, lbl, ci, W1, b1, W2, b2, X_dev, Y_dev)
