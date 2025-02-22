@@ -1,4 +1,8 @@
 from Server.Processes import Process
 
 data = Process.Data()
-data.get_prediction()
+pred, lbl, img = data.get_prediction()
+
+print("Prediction: " + str(pred))
+print("Value: " + str(lbl))
+img.show()

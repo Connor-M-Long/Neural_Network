@@ -66,13 +66,11 @@ class Data:
         NN = Math.NeuralNeural()
         pred, lbl, ci = NN.test_prediction(random.randint(0, 9), W1, b1, W2, b2, X_dev, Y_dev)  # creates a prediction
 
-        print("Prediction: " + str(pred))
-        print("Value: " + str(lbl))
-
         current_image = ci.reshape((28, 28)) * 255
         plt.gray()
         plt.imshow(current_image, interpolation='nearest')
-        plt.savefig("Num.png")
+        plt.savefig("Configuration/Num.png")
 
-        img = Image.open("Num.png")
-        img.show()
+        img = Image.open("Configuration/Num.png")
+
+        return pred, lbl, img
