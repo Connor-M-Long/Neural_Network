@@ -1,9 +1,10 @@
+import json
 import random
 import numpy as np
 import pandas as pd
-from Client.UI import interface
+from PIL import Image
+from matplotlib import pyplot as plt
 from Server.Logic import Math
-from Server.Entities import weightsBiases
 
 class Data:
     def __init__(self):
@@ -31,16 +32,47 @@ class Data:
 
         W1, b1, W2, b2 = NN.gradient_descent(X_train, Y_train, 0.10, 500)  # trains the neural network
 
-        #values = weightsBiases.DTO(W1, W2, b1, b2, X_dev, Y_dev)
+        storedData = {
+            "w1": W1.tolist(),
+            "w2": W2.tolist(),
+            "b1": b1.tolist(),
+            "b2": b2.tolist(),
+            "x": X_dev.tolist(),
+            "y": Y_dev.tolist()
+        }
 
-        #return values
+        json_storedData = json.dumps(storedData)
 
-        self.get_prediction(W1, b1, W2, b2, X_dev, Y_dev)
+        with open('./Configuration/wbConfig.json', mode="w", encoding="utf-8") as file:
+            json.dump(json_storedData, file, indent=4)
 
-    def get_prediction(self, W1, b1, W2, b2, X_dev, Y_dev):
+    def get_prediction(self):
+
+        with open('./Configuration/wbConfig.json', mode="r") as file:
+            config = json.load(file)
+
+        if isinstance(config, str):
+            config = json.loads(config)
+
+        W1, W2, b1, b2, X_dev, Y_dev = config["w1"], config["w2"], config["b1"], config["b2"], config["x"], config["y"]
+
+        X_dev = np.array(X_dev)
+        Y_dev = np.array(Y_dev)
+        W1 = np.array(W1)
+        W2 = np.array(W2)
+        b1 = np.array(b1)
+        b2 = np.array(b2)
 
         NN = Math.NeuralNeural()
         pred, lbl, ci = NN.test_prediction(random.randint(0, 9), W1, b1, W2, b2, X_dev, Y_dev)  # creates a prediction
 
-        userInterface = interface()
-        userInterface.display(pred, lbl, ci, W1, b1, W2, b2, X_dev, Y_dev)
+        print("Prediction: " + str(pred))
+        print("Value: " + str(lbl))
+
+        current_image = ci.reshape((28, 28)) * 255
+        plt.gray()
+        plt.imshow(current_image, interpolation='nearest')
+        plt.savefig("Num.png")
+
+        img = Image.open("Num.png")
+        img.show()

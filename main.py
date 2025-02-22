@@ -1,9 +1,4 @@
-from Server.Processes import Process, Timer
-
-t = Timer.Timer()
-t.start()
+from Server.Processes import Process
 
 data = Process.Data()
-data.get_data()
-
-t.stop()
+data.get_prediction()

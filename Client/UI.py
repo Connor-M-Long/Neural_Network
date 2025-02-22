@@ -1,3 +1,4 @@
+'''
 import PySimpleGUI as sg
 from matplotlib import pyplot as plt
 from Server.Logic import Math
@@ -47,3 +48,4 @@ class interface:
                 break
 
         window.close()
+'''
