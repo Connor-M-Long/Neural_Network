@@ -43,12 +43,12 @@ class Data:
 
         json_storedData = json.dumps(storedData)
 
-        with open('./Configuration/wbConfig.json', mode="w", encoding="utf-8") as file:
+        with open('./Server/Configuration/wbConfig.json', mode="w", encoding="utf-8") as file:
             json.dump(json_storedData, file, indent=4)
 
     def get_prediction(self):
 
-        with open('./Configuration/wbConfig.json', mode="r") as file:
+        with open('./Server/Configuration/wbConfig.json', mode="r") as file:
             config = json.load(file)
 
         if isinstance(config, str):
@@ -69,8 +69,8 @@ class Data:
         current_image = ci.reshape((28, 28)) * 255
         plt.gray()
         plt.imshow(current_image, interpolation='nearest')
-        plt.savefig("Configuration/Num.png")
+        plt.savefig("./Server/Configuration/Num.png")
 
-        img = Image.open("Configuration/Num.png")
+        img = Image.open("./Server/Configuration/Num.png")
 
         return pred, lbl, img
